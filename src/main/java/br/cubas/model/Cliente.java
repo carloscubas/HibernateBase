@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,8 +26,13 @@ public class Cliente {
 
     private String endereco;
 
+    @Lob
+    private String obs;
+
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
+
+    private String email;
 
     public Long getIdCliente () {
         return idCliente;
@@ -58,5 +64,21 @@ public class Cliente {
 
     public void setDataNascimento (final Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getObs () {
+        return obs;
+    }
+
+    public void setObs (final String obs) {
+        this.obs = obs;
+    }
+
+    public String getEmail () {
+        return email;
+    }
+
+    public void setEmail (final String email) {
+        this.email = email;
     }
 }

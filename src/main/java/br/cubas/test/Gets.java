@@ -1,11 +1,8 @@
 package br.cubas.test;
 
-import java.util.Date;
-
 import br.cubas.model.Cliente;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -14,9 +11,9 @@ import org.hibernate.service.ServiceRegistryBuilder;
  * @author s2it_csilva
  * @version $Revision: $<br/>
  * $Id: $
- * @since 2/5/19 3:03 PM
+ * @since 2/7/19 2:16 PM
  */
-public class IncluindoCliente {
+public class Gets {
 
     public static void main(String[] args){
         Configuration configuration = new Configuration();
@@ -30,17 +27,12 @@ public class IncluindoCliente {
 
         Session s = sessionFactory.openSession();
 
-        Cliente cliente = new Cliente();
-        cliente.setNome("napoleao bonaparte");
-        cliente.setDataNascimento(new Date());
-        cliente.setEndereco("bauru");
-        cliente.setEmail("teste@teste");
-
-        Transaction t = s.beginTransaction();
-        s.saveOrUpdate(cliente);
-        t.commit();
-
-        System.out.println(cliente.getIdCliente());
+        Cliente cliente = (Cliente) s.get(Cliente.class, 20000l);
+        if(cliente != null){
+            System.out.println("O cliente existe");
+        }else{
+            System.out.println("O cliente não existe");
+        }
 
     }
 
